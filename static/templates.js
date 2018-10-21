@@ -3,19 +3,50 @@ let templates = {
             return `  
             <div class="">
                 <tr>
-                    <td> ${planet['name']} </td>
-                    <td> ${planet['diameter']}  ${ planet['diameter'] != "unknown" ? ` KM` : ` -- `} </td>
+                    <td class="text-left"> ${planet['name']} </td>
+                    <td> ${planet['diameter']}  ${ planet['diameter'] != "unknown" ? ` KM` : `.`} </td>
                     <td> ${planet['climate']} </td>
                     <td> ${planet['terrain']} </td>
-                    <td> ${planet['surface_water']}  ${ planet['surface_water'] != "unknown" ? ` %` : ` -- `} </td>
-                    
-                    <td> ${planet['population']} ${ planet['population'] != "unknown" ? ` people` : ` -- `} <td>
-                    <td> ${ planet['residents'] == [] ?
-                        ` NO RESIDENTS` : ` <button data-url="${planet['url']}" class="details"> RESIDENTS</button>`} 
-                        
-                    </td>
+                    <td> ${planet['surface_water']}  ${ planet['surface_water'] != "unknown" ? ` %` : `.`} </td>
+                    <td> ${planet['population']} ${ planet['population'] != "unknown" ? ` people` : `.`} </td>
+                    <td class="text-center" > ${ planet['residents'].length == 0 ?
+                        ` NO RESIDENTS` : ` 
+                            <button data-url="${planet['url']}" type="button" class="residents btn btn-primary" data-toggle="modal" data-target="#modal"> RESIDENTS</button>
+                              `} 
+                     </td>
                 </tr>
             </div> `
-        }
+        },
+
+    getResidents: function(resident){
+            return`   <tr>
+                    <td class="text-left"> ${resident['name']} </td>
+                    <td> ${resident['height']}  </td>
+                    <td> ${resident['mass']} </td>
+                    <td> ${resident['hair_color']} </td>
+                    <td> ${resident['skin_color']} </td>
+                    <td> ${resident['eye_color']} </td>
+                    <td> ${resident['birth_year']} </td>
+                    <td> ${resident['gender']} </td>
+                </tr>          `
+        },
+
+
+    getResidentHeader: function(){
+        return ` 
+                <tr>
+                 <thead>
+                    <th class="text-left">Name</th>
+                    <th>Height</th>
+                    <th>Mass</th>
+                    <th>Hair color</th>
+                    <th>Skin color</th>
+                    <th>Eye color</th>
+                    <th>Birth year</th>
+                    <th>Gender</th>
+                 </thead>
+                </tr>  `
+    }
+
 
 };
