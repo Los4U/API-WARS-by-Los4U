@@ -1,32 +1,60 @@
 $(document).ready(function() {
 
-    let xhr =  new XMLHttpRequest();
-    xhr.open('GET','https://swapi.co/api/planets', true);
-    xhr.responseText = 'text';
+    let dom = {
 
-    xhr.onload = function(){
+        showPlanet(){
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://swapi.co/api/planets', true);
+            xhr.responseText = 'text';
 
-        let data = (JSON.parse(xhr.response));
+            xhr.onload = function () {
 
-        console.log("Tablice", data.results[0]);
-        let table = document.getElementById("table");
+                let data = (JSON.parse(xhr.response));
+                console.log("Tablice", data.results);
 
-        for (let planet of data.results){
-            table.insertAdjacentHTML('beforeend', templates.getRow(planet));
+                let table = document.getElementById("table");
+                for (let planet of data.results) {
+                    table.insertAdjacentHTML('beforeend', templates.getRow(planet));
+                }
 
-            // let newCardButton = $(`#new-card-${board.id}`);
-            // newCardButton.click(function (ev){
-            //     console.log(ev.target);
-            //     let modal = document.getElementById("modal");
-            //     modal.dataset.boardId = board.id;
-            // });
+                let residentsButtons = document.getElementsByClassName('residents');
+                console.log("Buttons", residentsButtons);
 
+                [].forEach.call(residentsButtons, function (button) {
+                    button.addEventListener("click", dom.showModal);
+                });
+            };
+            xhr.send();
+        },
+
+        showModal(ev){
+            let modalContent = document.getElementById("residentTable");
+            modalContent.innerHTML = "";
+            let planetName = document.getElementById("planetName");
+            planetName.innerText = "";
+
+            $.getJSON(ev.target.dataset.url , function(response){
+                console.log("Planet name", response['name']);
+                planetName.innerText = "Residents of planet " + response['name'];
+                dom.showResidents(response['residents'])
+            });
+        },
+
+        showResidents(residents){
+            let modalContent = document.getElementById("residentTable");
+            modalContent.innerHTML = "";
+            modalContent.insertAdjacentHTML('beforeend', templates.getResidentHeader() );
+
+            residents.forEach(function (resident) {
+                $.getJSON(resident , function(response){
+                console.log("Resident", response['name']);
+                modalContent.insertAdjacentHTML('beforeend', templates.getResidents(response));
+                });
+
+            });
         }
 
     };
 
-    xhr.send();
-
-
-   // do stuff when DOM is ready
+dom.showPlanet();
 });
