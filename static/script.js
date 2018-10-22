@@ -1,18 +1,51 @@
 $(document).ready(function() {
 
+    pageAdress = "https://swapi.co/api/planets";
+
     let dom = {
+
+        eventHelper(){
+            let buttonPrevious = document.getElementById("previous");
+            let buttonNext = document.getElementById("next");
+            buttonPrevious.disabled = true;
+
+                buttonPrevious.addEventListener("click", function(){
+                    $.getJSON(pageAdress , function(response){
+                        console.log("Previous",response['previous'] );
+                        if(response['previous'] != null){
+                              pageAdress = response['previous'];
+                              dom.showPlanet();
+                        }
+                        else{
+                            buttonPrevious.disabled = true;
+                        }
+
+                    });
+                });
+
+                buttonNext.addEventListener("click", function(){
+                    buttonPrevious.disabled = false;
+                    $.getJSON(pageAdress , function(response){
+                        pageAdress = response['next'];
+                        dom.showPlanet();
+                    });
+                });
+        },
 
         showPlanet(){
             let xhr = new XMLHttpRequest();
-            xhr.open('GET', 'https://swapi.co/api/planets', true);
+            xhr.open('GET', pageAdress, true);
             xhr.responseText = 'text';
 
             xhr.onload = function () {
-
                 let data = (JSON.parse(xhr.response));
                 console.log("Tablice", data.results);
 
                 let table = document.getElementById("table");
+                table.innerHTML = "";
+                table.insertAdjacentHTML('beforeend', templates.getRowHeader());
+
+
                 for (let planet of data.results) {
                     table.insertAdjacentHTML('beforeend', templates.getRow(planet));
                 }
