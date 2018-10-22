@@ -83,11 +83,10 @@ $(document).ready(function() {
                 console.log("Resident", response['name']);
                 modalContent.insertAdjacentHTML('beforeend', templates.getResidents(response));
                 });
-
             });
         }
-
     };
 
 dom.showPlanet();
+dom.eventHelper();
 });
