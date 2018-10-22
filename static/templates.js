@@ -11,12 +11,27 @@ let templates = {
                     <td> ${planet['population']} ${ planet['population'] != "unknown" ? ` people` : `.`} </td>
                     <td class="text-center" > ${ planet['residents'].length == 0 ?
                         ` NO RESIDENTS` : ` 
-                            <button data-url="${planet['url']}" type="button" class="residents btn btn-primary" data-toggle="modal" data-target="#modal"> RESIDENTS</button>
+                            <button data-url="${planet['url']}" type="button" class="residents btn btn-outline-light" data-toggle="modal" data-target="#modal"> RESIDENTS</button>
                               `} 
                      </td>
                 </tr>
             </div> `
         },
+
+    getRowHeader: function(){
+        return ` 
+                <tr>
+                    <thead class="thead-dark">
+                        <th class="text-left">Name</th>
+                        <th>Diameter</th>
+                        <th>Climate</th>
+                        <th>Terrain</th>
+                        <th>Surface water</th>
+                        <th>Population</th>
+                        <th class="text-center">Population details</th>
+                    </thead>
+                </tr> `
+    },
 
     getResidents: function(resident){
             return`   <tr>
