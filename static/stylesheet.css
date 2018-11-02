@@ -19,3 +19,40 @@ body
     background-size: cover;
 }
 
+
+#table_container{
+    }
+
+.buttons{
+    width: 100%;
+    display: inline;
+}
+
+.prev1{
+    cursor: pointer;
+    width: 50%;
+    float: left;
+    padding-bottom: 10px;
+}
+
+.next1{
+    cursor: pointer;
+    width: 50%;
+    float: left;
+    text-align:right;
+    padding-bottom: 10px;
+}
+.next, .prev{
+    width: 100px;
+}
+.next:hover{
+    color: yellow;
+    font-weight: bold;
+    border: 1px solid white;
+}
+
+.prev:hover{
+    color: yellow;
+    font-weight: bold;
+    border: 1px solid white;
+}
