@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block page_content %}
+
+    <h2 class="newUser">NEW USER</h2>
+
+    <div class="cointainer">
+        <h2>Please enter login and password.</h2>
+{#        <form id="loginForm" action="{{ url_for('login') }}" method="POST" class="form-inline ml-auto">#}
+
+        <form id="loginForm" action="{{ url_for('new_user') }}" method="POST" class="login" >
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password"  name="psw" required>
+
+            <button type="submit" class="registerButton btn btn-outline-light"> REGISTER</button>
+
+        </form>
+
+    </div>
+
+{% endblock %}

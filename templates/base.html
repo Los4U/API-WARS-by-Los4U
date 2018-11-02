@@ -1,10 +1,35 @@
-{% extends "bootstrap/base.html" %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>API Wars</title>
+    <!-- Bootstrap -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 
-{% block navbar %}
+  </head>
+  <body>
+
+
+    <link rel="stylesheet" type="text/css" href="static/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="static/login.css">
+    <script src="/static/templates.js" defer></script>
+    <script src="/static/script.js" defer></script>
+    <link rel="shortcut icon" href="#" />
+
 <nav class="navbar navbar-dark bg-dark" role="navigation">
     <div class="container">
-        <a class="navbar-brand" href="{{ url_for('index') }}">Planet List</a>
+        <a class="navbar-brand" href="/">Planet List</a>
 
+        <a class="navbar-brand" href="/login">Log in</a>
+
+        <a class="navbar-brand" href="/register">Register</a>
+
+        <a class="navbar-brand" href="/">Log out</a>
+
+    </div>
+</nav>
 {#        {% if session['logged_in'] %}#}
 {#            <a class="navbar-brand" href="{{ url_for('logout') }}">Log out</a>#}
 {#            <div class="nav navbar-nav navbar-right">#}
@@ -15,14 +40,21 @@
 {#            <a class="navbar-brand" href="{{ url_for('login') }}">Log in</a>#}
 {#        {% endif %}#}
 
-    </div>
-</nav>
-{% endblock %}
-
-{% block content %}
     <div id="table_container"class="container mw-100">
-        {% block page_content %}
 
+        {% block content %}
+            <div id="table_container"class="container mw-100">
+                {% block page_content %}
+
+                {% endblock %}
+            </div>
         {% endblock %}
+
     </div>
-{% endblock %}
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

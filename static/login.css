@@ -1,0 +1,66 @@
+.cointainer{
+    position: relative;
+    top: 20% ;
+    left: calc(50% - 25vw) ;
+    width: 50vw;
+    height: 40vh;
+    background-color: black;
+    border: 2px solid whitesmoke;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+
+}
+
+.login{
+    position: absolute;
+    top: 60% ;
+    left: 50%;
+    color: yellow;
+    transform: translate(-50%, -50%);
+
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid red;
+    box-sizing: border-box;
+}
+
+.loginButton{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100px;
+    margin-top: 10px;
+}
+
+.registerButton{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    width: 120px;
+    margin-top: 10px;
+}
+
+h2{
+    width: 100%;
+    text-align: center;
+    color: whitesmoke;
+    margin-top: 30px;
+}
+.newUser{
+    position: relative;
+    width: 200px;
+    height: 40px;
+    top: 1vh;
+    left: 58vw;
+
+    color: white;
+    z-index: 1;
+    text-shadow: 2px 2px red;
+    /*border: 2px solid green;*/
+}

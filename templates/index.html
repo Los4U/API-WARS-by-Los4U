@@ -3,12 +3,9 @@
 {% block title %}API Wars{% endblock %}
 
 {% block page_content %}
-
 {#    {% set page = page|int %}#}
 
-    <link rel="stylesheet" type="text/css" href="static/stylesheet.css">
-    <script src="{{ url_for('static', filename='templates.js') }}" defer></script>
-    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+
 
    <h1 class="h1 text-light"> Star Wars universe planets </h1>
 
@@ -23,9 +20,7 @@
     </div>
 
 
-
     <table id="table" class=" text-white table table-striped table-hover">
-
 
     </table>
 
@@ -48,4 +43,5 @@
         </div>
       </div>
     </div>
+
 {% endblock %}
