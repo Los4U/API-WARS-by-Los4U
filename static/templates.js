@@ -4,11 +4,13 @@ let templates = {
             <div class="">
                 <tr>
                     <td class="text-left"> ${planet['name']} </td>
-                    <td> ${planet['diameter']}  ${ planet['diameter'] != "unknown" ? ` KM` : `.`} </td>
+                    <td> ${planet['diameter']}  ${ planet['diameter'] != "unknown" ? ` KM` : `?`} </td>
                     <td> ${planet['climate']} </td>
                     <td> ${planet['terrain']} </td>
-                    <td> ${planet['surface_water']}  ${ planet['surface_water'] != "unknown" ? ` %` : `.`} </td>
-                    <td> ${planet['population']} ${ planet['population'] != "unknown" ? ` people` : `.`} </td>
+                    <td> ${planet['surface_water']}  ${ planet['surface_water'] != "unknown" ? ` %` : `?`} </td>
+                    
+                    
+                    <td> ${ planet['population'] != "unknown" ? `${ Number(planet['population']).toLocaleString()} people` : `unknown`} </td>
                     <td class="text-center" > ${ planet['residents'].length == 0 ?
                         ` NO RESIDENTS` : ` 
                             <button data-url="${planet['url']}" type="button" class="residents btn btn-outline-light" data-toggle="modal" data-target="#modal"> RESIDENTS</button>
@@ -63,5 +65,5 @@ let templates = {
                 </tr>  `
     }
 
-
+// ${ Number(planet['population']).toLocaleString()}
 };
