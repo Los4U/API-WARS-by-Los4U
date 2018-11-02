@@ -1,32 +1,26 @@
 $(document).ready(function() {
 
-    pageAdress = "https://swapi.co/api/planets";
+
+    let previousAddress = "";
+    let nextAddress = "";
+    let pageAddress = "https://swapi.co/api/planets";
 
     let dom = {
 
         eventHelper(){
             let buttonPrevious = document.getElementById("previous");
             let buttonNext = document.getElementById("next");
-            buttonPrevious.disabled = true;
 
                 buttonPrevious.addEventListener("click", function(){
-                    $.getJSON(pageAdress , function(response){
-                        console.log("Previous",response['previous'] );
-                        if(response['previous'] != null){
-                              pageAdress = response['previous'];
-                              dom.showPlanet();
-                        }
-                        else{
-                            buttonPrevious.disabled = true;
-                        }
-
+                    $.getJSON(pageAddress , function(response){
+                        pageAddress = response['previous'];
+                        dom.showPlanet();
                     });
                 });
 
                 buttonNext.addEventListener("click", function(){
-                    buttonPrevious.disabled = false;
-                    $.getJSON(pageAdress , function(response){
-                        pageAdress = response['next'];
+                    $.getJSON(pageAddress , function(response){
+                        pageAddress = response['next'];
                         dom.showPlanet();
                     });
                 });
@@ -34,12 +28,23 @@ $(document).ready(function() {
 
         showPlanet(){
             let xhr = new XMLHttpRequest();
-            xhr.open('GET', pageAdress, true);
+            xhr.open('GET', pageAddress, true);
             xhr.responseText = 'text';
 
             xhr.onload = function () {
                 let data = (JSON.parse(xhr.response));
-                console.log("Tablice", data.results);
+                // console.log("Tablice", data.results);
+                console.log("Prev", data['previous']);
+                console.log("Next", data['next']);
+
+                let buttonPrevious = document.getElementById("previous");
+                let buttonNext = document.getElementById("next");
+
+                if(data['previous'] == null){  buttonPrevious.disabled = true;    }
+                else{                          buttonPrevious.disabled = false;   }
+
+                if(data['next'] == null){      buttonNext.disabled = true;        }
+                else{                          buttonNext.disabled = false;       }
 
                 let table = document.getElementById("table");
                 table.innerHTML = "";
@@ -51,7 +56,7 @@ $(document).ready(function() {
                 }
 
                 let residentsButtons = document.getElementsByClassName('residents');
-                console.log("Buttons", residentsButtons);
+                // console.log("Buttons", residentsButtons);
 
                 [].forEach.call(residentsButtons, function (button) {
                     button.addEventListener("click", dom.showModal);
