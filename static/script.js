@@ -12,17 +12,13 @@ $(document).ready(function() {
             let buttonNext = document.getElementById("next");
 
                 buttonPrevious.addEventListener("click", function(){
-                    $.getJSON(pageAddress , function(response){
-                        pageAddress = response['previous'];
-                        dom.showPlanet();
-                    });
+                    pageAddress = previousAddress;
+                    dom.showPlanet();
                 });
 
                 buttonNext.addEventListener("click", function(){
-                    $.getJSON(pageAddress , function(response){
-                        pageAddress = response['next'];
-                        dom.showPlanet();
-                    });
+                    pageAddress = nextAddress;
+                    dom.showPlanet();
                 });
         },
 
@@ -33,9 +29,6 @@ $(document).ready(function() {
 
             xhr.onload = function () {
                 let data = (JSON.parse(xhr.response));
-                // console.log("Tablice", data.results);
-                console.log("Prev", data['previous']);
-                console.log("Next", data['next']);
 
                 let buttonPrevious = document.getElementById("previous");
                 let buttonNext = document.getElementById("next");
@@ -46,17 +39,18 @@ $(document).ready(function() {
                 if(data['next'] == null){      buttonNext.disabled = true;        }
                 else{                          buttonNext.disabled = false;       }
 
+                previousAddress = data['previous'];
+                nextAddress = data['next'];
+
                 let table = document.getElementById("table");
                 table.innerHTML = "";
                 table.insertAdjacentHTML('beforeend', templates.getRowHeader());
-
 
                 for (let planet of data.results) {
                     table.insertAdjacentHTML('beforeend', templates.getRow(planet));
                 }
 
                 let residentsButtons = document.getElementsByClassName('residents');
-                // console.log("Buttons", residentsButtons);
 
                 [].forEach.call(residentsButtons, function (button) {
                     button.addEventListener("click", dom.showModal);
