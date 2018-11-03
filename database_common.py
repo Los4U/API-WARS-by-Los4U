@@ -10,11 +10,6 @@ def get_connection_string():
     host = os.environ.get('HOST')
     database_name = os.environ.get('DB_NAME')
 
-    # U_NAME = kamil;
-    # U_PSW = poczta123;
-    # HOST = localhost;
-    # DB_NAME = apiwars
-
     env_variables_defined = user_name and password and host and database_name
 
     if env_variables_defined:
