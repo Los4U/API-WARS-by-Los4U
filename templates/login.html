@@ -1,24 +1,30 @@
 {% extends 'base.html' %}
 
-
-
-
-
 {% block page_content %}
 
     <div class="cointainer">
-        <h2>Please enter login and password.</h2>
-        <form action="url" class="login">
+         {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {%for message in messages %}
+                    <h2 id="error_message" style="color: red;">{{message}}</h2>
+                {%endfor%}
+            {% else %}
+                    <h2>Please enter login and password.</h2>
+            {%endif%}
+        {%endwith%}
+
+
+        <form id="loginForm" action="{{ url_for('check_login') }}" method="POST" class="login" >
             <label for="uname"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="uname" required>
 
             <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="psw" required>
 
-            <button data-url="${planet['url']}" type="submit" class="loginButton btn btn-outline-light"> LOGIN</button>
-
+            <button type="submit" class="loginButton btn btn-outline-light"> LOGIN</button>
         </form>
 
     </div>
+
 
 {% endblock %}

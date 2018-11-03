@@ -18,27 +18,27 @@
     <script src="/static/script.js" defer></script>
     <link rel="shortcut icon" href="#" />
 
-<nav class="navbar navbar-dark bg-dark" role="navigation">
+<nav class="navbar navbar-dark bg-dark " role="navigation">
     <div class="container">
         <a class="navbar-brand" href="/">Planet List</a>
 
-        <a class="navbar-brand" href="/login">Log in</a>
+        {% if session['logged_in'] %}
+            <div class="form-inline">
+                <a id="logedInA"class="navbar-brand" href="{{ url_for('logout') }}">Log out: <strong>{{session['username'].upper()}}</strong></a>
+            </div>
 
-        <a class="navbar-brand" href="/register">Register</a>
 
-        <a class="navbar-brand" href="/">Log out</a>
+        {% else %}
+            <div class="form-inline">
+                <a class="navbar-brand" href="{{ url_for('login') }}">Log in</a>
+                <a class="navbar-brand" href="{{ url_for('register') }}">Registration</a>
+            </div>
+        {% endif %}
+
 
     </div>
 </nav>
-{#        {% if session['logged_in'] %}#}
-{#            <a class="navbar-brand" href="{{ url_for('logout') }}">Log out</a>#}
-{#            <div class="nav navbar-nav navbar-right">#}
-{#                <p class="navbar-text"><strong>Logged in as {{session['username']}}</strong></p>#}
-{#            </div>#}
-{#        {% else %}#}
-{#            <a class="navbar-brand" href="{{ url_for('register') }}">Registration</a>#}
-{#            <a class="navbar-brand" href="{{ url_for('login') }}">Log in</a>#}
-{#        {% endif %}#}
+
 
     <div id="table_container"class="container mw-100">
 
