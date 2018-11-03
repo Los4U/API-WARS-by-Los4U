@@ -1,5 +1,5 @@
 let templates = {
-    getRow: function(planet){
+    getRow: function(planet, isUserLoggedIn){
             return `  
             <div class="">
                 <tr>
@@ -8,19 +8,20 @@ let templates = {
                     <td> ${planet['climate']} </td>
                     <td> ${planet['terrain']} </td>
                     <td> ${planet['surface_water']}  ${ planet['surface_water'] != "unknown" ? ` %` : `?`} </td>
-                    
-                    
+                                        
                     <td> ${ planet['population'] != "unknown" ? `${ Number(planet['population']).toLocaleString()} people` : `unknown`} </td>
                     <td class="text-center" > ${ planet['residents'].length == 0 ?
                         ` NO RESIDENTS` : ` 
                             <button data-url="${planet['url']}" type="button" class="residents btn btn-outline-light" data-toggle="modal" data-target="#modal"> RESIDENTS</button>
                               `} 
                      </td>
-                </tr>
-            </div> `
+                     ${ isUserLoggedIn ? `<td><button id="${planet['name']}-vote" data-planet-name="${planet['name']}" data-planet-id="${planet['id']}"" class="btn btn-outline-light">VOTE</button></td>` : ` `} 
+                    </tr>
+                    
+                </div> `
         },
 
-    getRowHeader: function(){
+    getRowHeader: function(isUserLoggedIn){
         return ` 
                 <tr>
                     <thead class="thead-dark">
@@ -31,8 +32,9 @@ let templates = {
                         <th>Surface water</th>
                         <th>Population</th>
                         <th class="text-center">Population details</th>
-                    </thead>
-                </tr> `
+                        ${ isUserLoggedIn ? ` <th>Votes</th>` : ` `}                                                            
+                        </thead>
+                    </tr> `
     },
 
     getResidents: function(resident){

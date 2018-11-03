@@ -37,8 +37,8 @@ def check_login():
 
         return redirect(url_for('login'))
     else:
-        session['username'] = user_exist[0]['username']
-        session['id'] = user_exist[0]['id']
+        session['username'] = user_exist['username']
+        session['id'] = int(user_exist['id'])
         session['logged_in'] = True
 
         return redirect(url_for('index'))
@@ -63,8 +63,21 @@ def new_user():
 
         return redirect(url_for('register'))
     else:
+        flash('Register in succesfully')
         data_manager.add_user(login, password)
         return redirect(url_for('index') )
+
+
+@app.route('/add_vote', methods=["POST", "GET"])
+def add_vote():
+    planetName = request.form["planetName"]
+    planetId = int(request.form["planetId"])
+    print("p and I",planetName, planetId, 1  )
+
+    data_manager.add_vote(planetId, planetName, session['id'])
+
+    return "Success"
+
 
 
 if __name__ == '__main__':

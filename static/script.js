@@ -42,12 +42,22 @@ $(document).ready(function() {
                 previousAddress = data['previous'];
                 nextAddress = data['next'];
 
+                let isUserLoggedIn = !!document.getElementById("logedInA");
+                console.log("is_Logged", isUserLoggedIn);
+
                 let table = document.getElementById("table");
                 table.innerHTML = "";
-                table.insertAdjacentHTML('beforeend', templates.getRowHeader());
+                table.insertAdjacentHTML('beforeend', templates.getRowHeader(isUserLoggedIn));
 
                 for (let planet of data.results) {
-                    table.insertAdjacentHTML('beforeend', templates.getRow(planet));
+                    // Array(7) [ "https:", "", "swapi.co", "api", "planets", "4", "" ]   4
+                    planet.id = planet['url'].split('/')[5]; // thx Saymon N
+                    table.insertAdjacentHTML('beforeend', templates.getRow(planet, isUserLoggedIn));
+
+                    if (isUserLoggedIn) {
+                        let vote_button = document.getElementById(`${planet['name']}-vote`);
+                        vote_button.addEventListener('click', dom.addVote);
+                    }
                 }
 
                 let residentsButtons = document.getElementsByClassName('residents');
@@ -57,6 +67,29 @@ $(document).ready(function() {
                 });
             };
             xhr.send();
+        },
+
+
+        addVote(ev){
+            let planetName = ev.target.dataset.planetName;
+            let planetId = ev.target.dataset.planetId;
+            console.log("Vote", planetName, planetId );
+
+            let xhr = new XMLHttpRequest();
+                xhr.open('POST', '/add_vote', true);
+                xhr.responseText = 'text';
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                xhr.onload = function () {
+                    let data = xhr.response;
+                    console.log("data", data);
+                    let modal = document.querySelector(".modal-bg-kamil");
+                    modal.classList.add("modal-bg-kamil-active");
+
+                    let modalMessage = document.getElementById("modelMessage");
+                    modalMessage.innerText = `Thank you for voting for the planet: ${planetName}`;
+                      };
+                xhr.send(`planetName=${planetName}&planetId=${planetId}`);
         },
 
         showModal(ev){

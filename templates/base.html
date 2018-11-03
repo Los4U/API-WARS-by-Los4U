@@ -20,15 +20,15 @@
 
 <nav class="navbar navbar-dark bg-dark " role="navigation">
     <div class="container">
-        <a class="navbar-brand" href="/">Planet List</a>
 
         {% if session['logged_in'] %}
+            <a class="navbar-brand" href="/">Planet List</a>
+            <a id="statistic" class="navbar-brand">Statistic</a>
             <div class="form-inline">
-                <a id="logedInA"class="navbar-brand" href="{{ url_for('logout') }}">Log out: <strong>{{session['username'].upper()}}</strong></a>
+                <a id="logedInA" class="navbar-brand" href="{{ url_for('logout') }}">Log out: <strong>{{session['username'].upper()}}</strong></a>
             </div>
-
-
         {% else %}
+            <a class="navbar-brand" href="/">Planet List</a>
             <div class="form-inline">
                 <a class="navbar-brand" href="{{ url_for('login') }}">Log in</a>
                 <a class="navbar-brand" href="{{ url_for('register') }}">Registration</a>
