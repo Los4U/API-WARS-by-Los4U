@@ -5,8 +5,15 @@
     <h2 class="newUser">NEW USER</h2>
 
     <div class="cointainer">
-        <h2>Please enter login and password.</h2>
-{#        <form id="loginForm" action="{{ url_for('login') }}" method="POST" class="form-inline ml-auto">#}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {%for message in messages %}
+                    <h2 id="error_message" style="color: red;">{{message}}</h2>
+                {%endfor%}
+            {% else %}
+                    <h2>Please enter login and password.</h2>
+            {%endif%}
+        {%endwith%}
 
         <form id="loginForm" action="{{ url_for('new_user') }}" method="POST" class="login" >
             <label for="uname"><b>Username</b></label>
