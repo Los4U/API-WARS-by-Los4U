@@ -40,10 +40,10 @@
 </nav>
 
 
-    <div id="table_container"class="container mw-100">
+    <div id="table_container" class="container mw-100">
 
         {% block content %}
-            <div id="table_container"class="container mw-100">
+            <div id="table_container" class="container mw-100">
                 {% block page_content %}
 
                 {% endblock %}
@@ -52,9 +52,21 @@
 
     </div>
 
+    <div class="modal-bg-kamil">
+        <div class="kamilModal">
+            <h2 id="modelMessage">Message</h2>
+            <i id="modalClose" class="far fa-times-circle fa-2x"></i>
+        </div>
+    </div>
+
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
   </body>
 </html>
+
+
+{#.modal-bg-kamil-active#}

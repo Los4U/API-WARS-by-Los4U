@@ -56,3 +56,60 @@ body
     font-weight: bold;
     border: 1px solid white;
 }
+.loginButton{
+    z-index: 1;
+}
+
+.modal-bg-kamil{
+    z-index: -1;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    height: 20vh;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: 2px solid white;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    opacity: 0;
+    -webkit-transition: 2s time;
+    -moz-transition: 2s time;
+    -ms-transition: 2s time;
+    -o-transition: 2s time;
+    transition: 2s time;
+}
+
+.modal-bg-kamil-active{
+    z-index: 2;
+    opacity: 1;
+}
+
+.kamilModal{
+    position: relative;
+    width: 90%;
+    height: 90%;
+
+}
+
+#modalClose{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    color: white;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+}
+
+.modalForStats{
+    width: 50%;
+    height: 40vh;
+}
+
+

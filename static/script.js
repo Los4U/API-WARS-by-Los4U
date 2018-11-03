@@ -20,6 +20,24 @@ $(document).ready(function() {
                     pageAddress = nextAddress;
                     dom.showPlanet();
                 });
+
+                modalClose = document.getElementById("modalClose");
+                modalClose.addEventListener("click", function () {
+                    let modal = document.querySelector(".modal-bg-kamil");
+                    modal.classList.remove("modal-bg-kamil-active");
+                });
+
+                let statisticButton = document.getElementById("statistic");
+                statisticButton.addEventListener("click", function () {
+                   let modal = document.querySelector(".modal-bg-kamil");
+                   modal.classList.add("modalForStats");
+                   modal.classList.add("modal-bg-kamil-active");
+
+                    let modalMessage = document.getElementById("modelMessage");
+                    modalMessage.innerText = `Statistic`;
+                }) ;
+
+
         },
 
         showPlanet(){
