@@ -28,16 +28,33 @@ $(document).ready(function() {
                 });
 
                 let statisticButton = document.getElementById("statistic");
-                statisticButton.addEventListener("click", function () {
-                   let modal = document.querySelector(".modal-bg-kamil");
-                   modal.classList.add("modalForStats");
-                   modal.classList.add("modal-bg-kamil-active");
+                statisticButton.addEventListener("click", dom.showStats);
+        },
 
-                    let modalMessage = document.getElementById("modelMessage");
-                    modalMessage.innerText = `Statistic`;
-                }) ;
+        showStats(){
+            let modalWindow = document.querySelector(".modal-bg-kamil");
 
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', '/show_stats', true);
+            xhr.responseText = 'text';
 
+            xhr.onload = function () {
+                let data = (JSON.parse(xhr.response));
+                console.log("stata", data);
+
+                let modalContent = document.querySelector(".kamilModal");
+                modalContent.innerHTML = "";
+                modalContent.insertAdjacentHTML('beforeend', templates.getTable());
+
+                let table = document.getElementById("voteTable");
+                for (let planetVotes of data) {
+                    table.insertAdjacentHTML('beforeend', templates.getVotes(planetVotes));
+                }
+
+                modalWindow.classList.add("modalForStats");
+                modalWindow.classList.add("modal-bg-kamil-active");
+            };
+            xhr.send();
         },
 
         showPlanet(){
@@ -88,29 +105,7 @@ $(document).ready(function() {
         },
 
 
-        addVote(ev){
-            let planetName = ev.target.dataset.planetName;
-            let planetId = ev.target.dataset.planetId;
-            console.log("Vote", planetName, planetId );
-
-            let xhr = new XMLHttpRequest();
-                xhr.open('POST', '/add_vote', true);
-                xhr.responseText = 'text';
-                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-                xhr.onload = function () {
-                    let data = xhr.response;
-                    console.log("data", data);
-                    let modal = document.querySelector(".modal-bg-kamil");
-                    modal.classList.add("modal-bg-kamil-active");
-
-                    let modalMessage = document.getElementById("modelMessage");
-                    modalMessage.innerText = `Thank you for voting for the planet: ${planetName}`;
-                      };
-                xhr.send(`planetName=${planetName}&planetId=${planetId}`);
-        },
-
-        showModal(ev){
+       showModal(ev){
             let modalContent = document.getElementById("residentTable");
             modalContent.innerHTML = "";
             let planetName = document.getElementById("planetName");
@@ -134,7 +129,33 @@ $(document).ready(function() {
                 modalContent.insertAdjacentHTML('beforeend', templates.getResidents(response));
                 });
             });
-        }
+        },
+
+         addVote(ev){
+            let planetName = ev.target.dataset.planetName;
+            let planetId = ev.target.dataset.planetId;
+            console.log("Vote", planetName, planetId );
+
+            let xhr = new XMLHttpRequest();
+                xhr.open('POST', '/add_vote', true);
+                xhr.responseText = 'text';
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                xhr.onload = function () {
+
+                    let modalContent = document.querySelector(".kamilModal");
+                    modalContent.innerHTML = "";
+                    modalContent.insertAdjacentHTML('beforeend', `<h2 id="modelMessage">You voted for: ${planetName}</h2>`);
+
+                    let modalWindow = document.querySelector(".modal-bg-kamil");
+                    modalWindow.classList.remove("modalForStats");
+                    modalWindow.classList.add("modal-bg-kamil-active");
+
+                      };
+                xhr.send(`planetName=${planetName}&planetId=${planetId}`);
+        },
+
+
     };
 
 dom.showPlanet();

@@ -65,7 +65,26 @@ let templates = {
                     <th>Gender</th>
                  </thead>
                 </tr>  `
+    },
+    getTable: function(){
+        return`   
+            <table id="voteTable" class=" text-white table table-striped table-hover">
+                <tr>
+                    <thead>
+                    <th class="text-left">Planet</th>
+                    <th>Votes</th>
+                    </thead>
+                </tr> 
+ 
+            </table>`
+    },
+
+    getVotes: function(planetVote){
+        return`   
+                <tr>
+                    <td class="text-left"> ${planetVote['planetname_']} </td>
+                    <td> ${planetVote['votes']}  </td>
+                </tr>`
     }
 
-// ${ Number(planet['population']).toLocaleString()}
 };

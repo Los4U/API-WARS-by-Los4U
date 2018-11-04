@@ -23,7 +23,7 @@
 
         {% if session['logged_in'] %}
             <a class="navbar-brand" href="/">Planet List</a>
-            <a id="statistic" class="navbar-brand">Statistic</a>
+            <h3 id="statistic" class="navbar-brand">Statistic</h3>
             <div class="form-inline">
                 <a id="logedInA" class="navbar-brand" href="{{ url_for('logout') }}">Log out: <strong>{{session['username'].upper()}}</strong></a>
             </div>
@@ -53,9 +53,10 @@
     </div>
 
     <div class="modal-bg-kamil">
+        <i id="modalClose" class="far fa-times-circle fa-2x"></i>
         <div class="kamilModal">
-            <h2 id="modelMessage">Message</h2>
-            <i id="modalClose" class="far fa-times-circle fa-2x"></i>
+            <h2 id="modelMessage"></h2>
+
         </div>
     </div>
 

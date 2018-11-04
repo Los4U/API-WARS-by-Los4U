@@ -39,3 +39,14 @@ def add_vote(cursor, planetId, planetName, userid):
                     INSERT INTO "planet-votes" (planetid_, planetname_, userid_)
                     VALUES ('{}','{}','{}');
                     """.format(planetId, planetName, userid))
+
+@database_common.connection_handler
+def get_all_stats(cursor):
+    cursor.execute ("""
+                    SELECT planetname_, count(planetname_) as votes 
+                    FROM public."planet-votes" 
+                    group by planetname_ 
+                    order by votes DESC;"""
+                    )
+    stats = cursor.fetchall()
+    return stats

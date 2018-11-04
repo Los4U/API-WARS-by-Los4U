@@ -83,6 +83,7 @@ body
     -ms-transition: 2s time;
     -o-transition: 2s time;
     transition: 2s time;
+    overflow-y: initial !important
 }
 
 .modal-bg-kamil-active{
@@ -94,6 +95,7 @@ body
     position: relative;
     width: 90%;
     height: 90%;
+    overflow-y: auto;
 
 }
 
@@ -101,15 +103,22 @@ body
     position: absolute;
     width: 30px;
     height: 30px;
-    color: white;
-    top: 0px;
-    right: 0px;
+    color: yellow;
+    top: 10px;
+    right: 10px;
     cursor: pointer;
 }
 
 .modalForStats{
-    width: 50%;
-    height: 40vh;
+    top: 50%;
+    width: 25%;
+    height: 70vh;
+    background-color: rgba(0, 0, 0, 1);
+}
+
+#voteTable{
+    top: 150px;
+    margin-top: 30px;
 }
 
 
