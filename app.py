@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, session, redirect, flash, url_for, jsonify
-from flask_bootstrap import Bootstrap
+# from flask_bootstrap import Bootstrap
 import data_manager
 import urllib
 
 app = Flask(__name__)
-Bootstrap(app)
+# Bootstrap(app)
 
 app.secret_key = "fdgssverfsd54fd54fd564fds822fds002we25rwf3w332w3r33h32n32fhvgohroighvogihvvdkb"
 
