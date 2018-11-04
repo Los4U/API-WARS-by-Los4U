@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session, redirect, flash, url_for, jsonify
 from flask_bootstrap import Bootstrap
 import data_manager
+import urllib
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -32,7 +33,7 @@ def check_login():
 
     print("User:", user_exist)
 
-    if user_exist == []:
+    if not user_exist:
         flash('User login or password are incorrect')
 
         return redirect(url_for('login'))
