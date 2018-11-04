@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, flash, url_for
+from flask import Flask, render_template, request, session, redirect, flash, url_for, jsonify
 from flask_bootstrap import Bootstrap
 import data_manager
 
@@ -77,6 +77,12 @@ def add_vote():
     data_manager.add_vote(planetId, planetName, session['id'])
 
     return "Success"
+
+@app.route('/show_stats')
+def show_stats():
+    stats = data_manager.get_all_stats()
+    return jsonify(stats)
+
 
 
 
