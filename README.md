@@ -38,29 +38,6 @@ Direct link: <https://starwars-swapi.herokuapp.com/>
 
 ## Code Examples
 Show examples of usage:
-`         addVote(ev){
-            let planetName = ev.target.dataset.planetName;
-            let planetId = ev.target.dataset.planetId;
-            console.log("Vote", planetName, planetId );
-
-            let xhr = new XMLHttpRequest();
-                xhr.open('POST', '/add_vote', true);
-                xhr.responseText = 'text';
-                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-                xhr.onload = function () {
-
-                    let modalContent = document.querySelector(".kamilModal");
-                    modalContent.innerHTML = "";
-                    modalContent.insertAdjacentHTML('beforeend', `<h2 id="modelMessage">You voted for: ${planetName}</h2>`);
-
-                    let modalWindow = document.querySelector(".modal-bg-kamil");
-                    modalWindow.classList.remove("modalForStats");
-                    modalWindow.classList.add("modal-bg-kamil-active");
-
-                      };
-                xhr.send(`planetName=${planetName}&planetId=${planetId}`);
-},`
 
 ## Status
 Project is: _finished_
