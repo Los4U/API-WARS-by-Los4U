@@ -33,7 +33,8 @@ List of features ready:
 Direct link: <https://starwars-swapi.herokuapp.com/>
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
+![Example screenshot](./star1.png)
+![Example screenshot](./star2.png)
 
 ## Code Examples
 Show examples of usage:
