@@ -36,9 +36,6 @@ Direct link: <https://starwars-swapi.herokuapp.com/>
 ![Example screenshot](./star1.png)
 ![Example screenshot](./star2.png)
 
-## Code Examples
-Show examples of usage:
-
 ## Status
 Project is: _finished_
 
